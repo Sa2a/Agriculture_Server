@@ -1,0 +1,19 @@
+package com.agriculture.repository;
+
+import com.agriculture.entities.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+import java.util.List;
+
+@RepositoryRestResource(collectionResourceRel = "product", path = "product")
+public interface ProductRepository extends JpaRepository<Product, Long>  {
+    List<Product> findByCategory_NameEqualsIgnoreCase(String name);
+
+    Product findByNameEqualsIgnoreCase(String name);
+
+    boolean existsByNameEqualsIgnoreCase(String name);
+
+
+}
